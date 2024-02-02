@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"auth/src/presentation/controller"
-	"auth/src/infrastructure/mongo"
+	"auth/src/infrastructure/mongo/repository"
 )
 
 type LoginRequest struct {
@@ -12,10 +12,8 @@ type LoginRequest struct {
 	Password string `form:"password" binding:"required"`
 }
 
-func LoginRouter(env *bootstrap.Env, time time.Duration, group *gin.RouterGroup) {
-	ur := UserRepository(
-		repository
-	)
+func LoginRouter(time time.Duration, group *gin.RouterGroup) {
+	ur := repository.SetDefault()
 
 	group.GET("/users", Login)
 }
@@ -28,7 +26,11 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	lc := controller.NewLogin(request.Email, request.Password)	
+	lc, err := controller.NewLogin(request.Email, request.Password)	
+	if err != nil {
+		c.JSON(http.StatusBadRequest, err.Error())
+		return
+	}
 
 	c.JSON(http.StatusOK, lc)
 }

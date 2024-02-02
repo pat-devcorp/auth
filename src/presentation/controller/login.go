@@ -2,6 +2,7 @@ package controller
 
 import (
 	"auth/src/application"
+	"auth/src/domain"
 
 	"golang.org/x/crypto/bcrypt"
 )
@@ -12,6 +13,11 @@ type LoginResponse struct {
 }
 
 func NewLogin(email string, password string) (LoginResponse, error) {
+	if not (domain.IsValidEmail(email) and domain.IsValidPassword(password)) {
+		c.JSON(http.StatusUnauthorized, domain.ErrorResponse{Message: "Invalid parameters"})
+		return
+	}
+
 	user, err := application.LoginApplication.GetUserByEmail(c, email)
 	if err != nil {
 		c.JSON(http.StatusNotFound, domain.ErrorResponse{Message: "User not found with the given email"})

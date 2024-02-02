@@ -1,5 +1,10 @@
 package utils
 
+type ErrorResponse struct {
+	Message CodeError `json:"message"`
+	Detail  string    `json:"detail"`
+}
+
 type CodeError struct {
 	Code    string `json:"code"`
 	Message string `json:"message"`
