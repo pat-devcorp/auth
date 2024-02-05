@@ -12,7 +12,7 @@ import (
 func Setup(env *bootstrap.Env, timeout time.Duration, gin *gin.Engine) {
 	publicRouter := gin.Group("")
 	HelloRouter(env, timeout, publicRouter)
-	SingupRouter(env, timeout, publicRouter)
+	SingUpRouter(env, timeout, publicRouter)
 	LoginRouter(env, timeout, publicRouter)
 	RefreshTokenRouter(env, timeout, publicRouter)
 

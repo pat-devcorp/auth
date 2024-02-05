@@ -49,7 +49,7 @@ func NewClient(config MongoServerConfig) (*MongoClient, error) {
 }
 
 // SetDefaultFromEnv creates a MongoClient with default values from environment variables
-func SetDefaultFromEnv(env *bootstrap.Env, tableName, pk string) (*MongoClient, error) {
+func SetDefault(env *bootstrap.Env, tableName, pk string) (*MongoClient, error) {
     config := MongoServerConfig{
         Hostname:     env.MongoHostName,
         Port:         env.MongoPort,

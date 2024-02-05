@@ -15,6 +15,8 @@ var (
 	UNAUTHORIZED           = CodeError{Code: "1001", Message: "User not allowed"}
 	ID_NOT_FOUND           = CodeError{Code: "1002", Message: "ID must be provided"}
 	ID_NOT_VALID           = CodeError{Code: "1003", Message: "ID not valid"}
+	INVALID_PARAMETERS     = CodeError{Code: "1003", Message: "Invalid params"}
+	WRONG_PASSWORD         = CodeError{Code: "1003", Message: "Wrong password"}
 	WRITER_NOT_FOUND       = CodeError{Code: "1004", Message: "Writer must be provided"}
 	SCHEMA_NOT_MATCH       = CodeError{Code: "1005", Message: "Schema does not match"}
 	UNSUPPORTED_MEDIA_TYPE = CodeError{Code: "415", Message: "This type of file is not supported"}

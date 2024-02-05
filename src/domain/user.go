@@ -21,6 +21,14 @@ var Users = []User{
    {UserId: "1", Name: "Bruno Carpio", Email: "bruno@gmail.com", Password: "BatmanIsBruceWayne"},
 }
 
+type UserRepository interface {
+	Fetch(*User, error)
+   GetById(id string) (*User, error)
+   Delete(id string)
+   Update(User)
+   Create(User)
+}
+
 func IsValid(user *User) (bool, error) {
    var errs []error
 
