@@ -25,7 +25,7 @@ func login(c *gin.Context) {
 		return
 	}
 
-	lc, err := &controller.NewLogin(request.Email, request.Password)	
+	lc, err := &controller.Login(request.Email, request.Password)	
 	if err != nil {
 		c.JSON(http.StatusBadRequest, err.Error())
 		return

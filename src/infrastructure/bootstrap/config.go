@@ -6,23 +6,24 @@ import (
 	"github.com/spf13/viper"
 )
 
-type Env struct {
+type Config struct {
 	AppEnv                 string `mapstructure:"APP_ENV"`
 	ServerAddress          string `mapstructure:"SERVER_ADDRESS"`
 	ContextTimeout         int    `mapstructure:"CONTEXT_TIMEOUT"`
-	MongoHostName          string `mapstructure:"MONGO_HOSTNAME"`
+	SystemUid              string `mapstructure:"SYSTEM_UID"`
+	MongoHost              string `mapstructure:"MONGO_HOSTNAME"`
 	MongoPort              string `mapstructure:"MONGO_PORT"`
 	MongoUser              string `mapstructure:"MONGO_USER"`
-	MongoPassword          string `mapstructure:"MONGO_PASS"`
-	MongoDatabaseName      string `mapstructure:"MONGO_DATABASE_NAME"`
+	MongoPass              string `mapstructure:"MONGO_PASS"`
+	MongoDB                string `mapstructure:"MONGO_DATABASE_NAME"`
 	AccessTokenExpiryHour  int    `mapstructure:"ACCESS_TOKEN_EXPIRY_HOUR"`
 	RefreshTokenExpiryHour int    `mapstructure:"REFRESH_TOKEN_EXPIRY_HOUR"`
 	AccessTokenSecret      string `mapstructure:"ACCESS_TOKEN_SECRET"`
 	RefreshTokenSecret     string `mapstructure:"REFRESH_TOKEN_SECRET"`
 }
 
-func NewEnv() *Env {
-	env := Env{}
+func NewConfig() *Config {
+	env := Config{}
 	viper.SetConfigFile(".env")
 
 	err := viper.ReadInConfig()

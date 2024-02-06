@@ -33,7 +33,7 @@ func (lu *loginApplication) CreateRefreshToken(user *domain.User, secret string,
 	return token.CreateRefreshToken(user, secret, expiry)
 }
 
-func (lu *loginApplication) NewLogin(c context.Context, email string, password string) {
+func (lu *loginApplication) Login(c context.Context, email string, password string) {
 	user, err := GetUserByEmail(c, email)
 	if err != nil {
 		return utils.ErrorResponse(utils.UNAUTHORIZED, "User not found with the given email")

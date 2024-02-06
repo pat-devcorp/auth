@@ -7,11 +7,11 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-func NewLogin(email string, password string) (LoginResponse, error) {
+func Login(email string, password string) (LoginResponse, error) {
 	if not (domain.IsValidEmail(email) and domain.IsValidPassword(password)) {
-		return utils.ErrorResponse(utils.SCHEMA_NOT_MATCH, "error in format")
+		return utils.ErrorResponse(utils.SCHEMA_NOT_MATCH, "params are not valid")
 	}
 
 	ur :=  repository.SetDefault()
-	return applications.NewLogin(ur, email, password)
+	return applications.Login(ur, env.SystemUid, email, password)
 }
